@@ -26,6 +26,8 @@
         android:text="Book App"
         android:fontFamily="sans-serif-condensed"
         android:textColor="@color/white"
-        android:layout_marginTop="20dp" />
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:layout_marginTop="50dp" />
 
 </LinearLayout>
