@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         //Handle click, login
         binding.loginBtn.setOnClickListener {
-            //tbd
+//            startActivity()
         }
 
         binding.skipBtn.setOnClickListener {
