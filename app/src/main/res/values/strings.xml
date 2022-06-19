@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bookshelf App Kotlin</string>
+    <string name="new_user_signup">Don\'t have an account? <b>Sign up</b></string><!--Make sign up bold-->
 </resources>
