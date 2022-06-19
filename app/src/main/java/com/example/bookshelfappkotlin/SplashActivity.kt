@@ -13,6 +13,7 @@ class SplashActivity : AppCompatActivity() {
         //Show splash for 2 seconds before jumping to main activity
         Handler().postDelayed( {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }, 2000)
     }
 }
