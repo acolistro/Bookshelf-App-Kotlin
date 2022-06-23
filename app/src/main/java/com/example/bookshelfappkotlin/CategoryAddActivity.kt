@@ -40,6 +40,7 @@ class CategoryAddActivity : AppCompatActivity() {
         //handle click, begin upload category
         binding.submitBtn.setOnClickListener {
             validateData()
+            binding.categoryEt.setText("")
         }
     }
 
