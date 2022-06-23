@@ -84,7 +84,7 @@ class DashboardAdminActivity : AppCompatActivity() {
                     //get data as model
                     val model = ds.getValue(ModelCategory::class.java)
 
-                        //add to arraylist
+                    //add to arraylist
                     categoryArrayList.add(model!!)
                 }
                 //setup adapter
