@@ -71,7 +71,7 @@ class CategoryAddActivity : AppCompatActivity() {
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$timestamp"
         hashMap["category"] = category
-        hashMap["timestamp"] = timestamp
+        hashMap["timestamp"] = "$timestamp"
         hashMap["uid"] = "${firebaseAuth.uid}"
 
         //add to firebase db: Database root > Categories > categoryId > category info

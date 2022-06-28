@@ -89,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 //failed login
                 Toast.makeText(this, "Login failed due to ${e.message}...", Toast.LENGTH_SHORT).show()
+                progressDialog.dismiss()
             }
     }
 
