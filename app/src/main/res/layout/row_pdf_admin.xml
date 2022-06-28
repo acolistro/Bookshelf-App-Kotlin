@@ -91,7 +91,7 @@
             android:maxLines="1"
             android:text="dd/mm/yyyy"
             android:textAlignment="center"/>
-        
+
         <!--Show more options-->
         <ImageButton
             android:id="@+id/moreBtn"
