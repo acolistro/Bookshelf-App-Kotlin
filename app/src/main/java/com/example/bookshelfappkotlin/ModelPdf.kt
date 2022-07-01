@@ -15,6 +15,8 @@ class ModelPdf {
 
     //empty constructor, required by firebase
     constructor()
+
+    //parameterized constructor
     constructor(
         uid: String,
         id: String,
@@ -36,7 +38,4 @@ class ModelPdf {
         this.viewsCount = viewsCount
         this.downloadsCount = downloadsCount
     }
-
-    //parameterized constructor
-
 }

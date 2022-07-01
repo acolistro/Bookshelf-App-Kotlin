@@ -67,7 +67,7 @@ class MyApplication: Application() {
             pdfTitle: String,
             pdfView: PDFView,
             progressBar: ProgressBar,
-            pagesTv: TextView
+            pagesTv: TextView?
         ){
             val TAG = "PDF_THUMBNAIL_TAG"
             //using url we can get file and it's metadata for firebase storage
@@ -105,21 +105,24 @@ class MyApplication: Application() {
 
                 }
         }
-    }
 
-    fun loadCategory(categoryId: String, categoryTv: TextView) {
-        //load category using category if from firebase
-        val ref = FirebaseDatabase.getInstance().getReference("Categories")
-        ref.child(categoryId)
-            .addListenerForSingleValueEvent(object: ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    //get category
-                    val category: String = "${snapshot.child("").value}"
-                }
+        fun loadCategory(categoryId: String, categoryTv: TextView) {
+            //load category using category if from firebase
+            val ref = FirebaseDatabase.getInstance().getReference("Categories")
+            ref.child(categoryId)
+                .addListenerForSingleValueEvent(object: ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        //get category
+                        val category: String = "${snapshot.child("").value}"
 
-                override fun onCancelled(error: DatabaseError) {
+                        //set category
+                        categoryTv.text = category
+                    }
 
-                }
-            })
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+        }
     }
 }
