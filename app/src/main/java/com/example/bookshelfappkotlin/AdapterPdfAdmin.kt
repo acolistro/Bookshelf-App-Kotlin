@@ -7,6 +7,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfappkotlin.databinding.RowPdfAdminBinding
+import com.example.bookshelfappkotlin.model.ModelPdf
 
 class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Filterable {
 
@@ -21,7 +22,7 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
     private lateinit var binding: RowPdfAdminBinding
 
     //filter object
-    var filter: FilterPdfAdmin? = null
+    private var filter: FilterPdfAdmin? = null
 
     //constructor
     constructor(context: android.content.Context, pdfArrayList: ArrayList<ModelPdf>) : super() {
@@ -47,7 +48,7 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
         val pdfUrl = model.url
         val timestamp = model.timestamp
         //convert timestamp to dd/mm/yyyy format
-        val formattedDate = MyApplication.formatTimestamp(timestamp)
+        val formattedDate = MyApplication.formatTimeStamp(timestamp)
 
         //set data
         holder.titleTv.text = title

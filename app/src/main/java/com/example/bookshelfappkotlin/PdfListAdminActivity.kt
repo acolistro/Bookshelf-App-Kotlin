@@ -1,13 +1,12 @@
 package com.example.bookshelfappkotlin
 
-import android.content.ContentValues.TAG
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import com.example.bookshelfappkotlin.databinding.ActivityPdfListAdminBinding
+import com.example.bookshelfappkotlin.model.ModelPdf
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -79,7 +78,7 @@ class PdfListAdminActivity : AppCompatActivity() {
         pdfArrayList = ArrayList()
 
         val ref = FirebaseDatabase.getInstance().getReference("Books")
-        ref.orderByChild("categoryId:").equalTo(categoryId)
+        ref.orderByChild("categoryId").equalTo(categoryId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     //clear list before start adding data into it

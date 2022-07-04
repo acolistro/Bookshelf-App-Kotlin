@@ -1,6 +1,7 @@
 package com.example.bookshelfappkotlin
 
 import android.widget.Filter
+import com.example.bookshelfappkotlin.model.ModelCategory
 
 class FilterCategory : Filter {
 

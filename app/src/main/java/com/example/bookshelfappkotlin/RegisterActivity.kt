@@ -106,7 +106,7 @@ class RegisterActivity : AppCompatActivity() {
         progressDialog.setMessage("Saving user info...")
 
         //timestamp
-        val timestamp = System.currentTimeMillis()
+        val timestamp = System.currentTimeMillis().toString()
 
         //get user uid now that it has been created
         val uid = firebaseAuth.uid

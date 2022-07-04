@@ -26,7 +26,7 @@ class MyApplication: Application() {
     companion object {
 
         //static method to convert timestamp to proper date format
-        fun formatTimestamp(timestamp: String) : String {
+        fun formatTimeStamp(timestamp: String) : String {
             val cal = Calendar.getInstance(Locale.ENGLISH)
             cal.timeInMillis = timestamp.toLong()
             //format dd/mm/yyyy
@@ -42,7 +42,7 @@ class MyApplication: Application() {
                 .addOnSuccessListener { storageMetadata ->
                     Log.d(TAG, "loadPdfSize: get metadata")
                     val bytes = storageMetadata.sizeBytes.toDouble()
-                    Log.d(TAG, "loadPdfSize: size bytes $bytes")
+                    Log.d(TAG, "loadPdfSize: size Bytes $bytes")
 
                     //convert bytes to KB/MB
                     val kb = bytes/1024
@@ -114,7 +114,7 @@ class MyApplication: Application() {
                 .addListenerForSingleValueEvent(object: ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         //get category
-                        val category: String = "${snapshot.child("").value}"
+                        val category = "${snapshot.child("category").value}"
 
                         //set category
                         categoryTv.text = category

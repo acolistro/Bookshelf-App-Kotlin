@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfappkotlin.databinding.RowCategoryBinding
+import com.example.bookshelfappkotlin.model.ModelCategory
 import com.google.firebase.database.FirebaseDatabase
 
 class AdapterCategory : RecyclerView.Adapter<AdapterCategory.ViewHolderCategory>, Filterable {
