@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/back01"
     android:padding="20dp"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
+    <!--Logo-->
     <androidx.cardview.widget.CardView
         android:id="@+id/icon1v"
         android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
         android:layout_marginTop="10dp"
         android:text="Welcome to Book App"
         android:textColor="@color/white"
-        android:textSize="16sp"/>
+        android:textSize="18sp"/>
 
     <Button
         android:id="@+id/loginBtn"

@@ -1,7 +1,6 @@
-package com.example.bookshelfappkotlin
+package com.example.bookshelfappkotlin.activity
 
 import android.app.AlertDialog
-import android.app.Application
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -13,6 +12,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.bookshelfappkotlin.databinding.ActivityPdfAddBinding
+import com.example.bookshelfappkotlin.model.ModelCategory
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -78,6 +78,9 @@ class PdfAddActivity : AppCompatActivity() {
             //STEP4: Upload pdf info to firebase db
 
             validateData()
+            binding.titleEt.text.clear()
+            binding.descriptionEt.text.clear()
+            binding.categoryTv.text = ""
         }
     }
 
@@ -117,7 +120,7 @@ class PdfAddActivity : AppCompatActivity() {
         progressDialog.show()
 
         //timestamp
-        val timestamp = System.currentTimeMillis()
+        val timestamp = System.currentTimeMillis().toString()
 
         //path of pdf in firebase storage
         val filePathAndName = "Books/$timestamp"
@@ -141,7 +144,7 @@ class PdfAddActivity : AppCompatActivity() {
             }
     }
 
-    private fun uploadedPdInfoToDb(uploadedPdfUrl: String, timestamp: Long) {
+    private fun uploadedPdInfoToDb(uploadedPdfUrl: String, timestamp: String) {
         //STEP4: Upload pdf info to firebase db
         Log.d(TAG, "uploadPdfInfoToDb: uploading to the db...")
         progressDialog.setMessage("Uploading pdf info...")
@@ -153,10 +156,10 @@ class PdfAddActivity : AppCompatActivity() {
         val hashMap: HashMap<String, Any> = HashMap()
         hashMap["uid"] = "$uid"
         hashMap["id"] = "$timestamp"
-        hashMap["title"] = "$title"
-        hashMap["description"] = "$description"
-        hashMap["categoryId"] = "$selectedCategoryId"
-        hashMap["url"] = "$uploadedPdfUrl"
+        hashMap["title"] = title
+        hashMap["description"] = description
+        hashMap["categoryId"] = selectedCategoryId
+        hashMap["url"] = uploadedPdfUrl
         hashMap["timestamp"] = timestamp
         hashMap["viewsCount"] = 0
         hashMap["downloadsCount"] = 0
