@@ -220,7 +220,7 @@
                 android:layout_marginTop="5dp"
                 android:text="The description of the book."
                 android:textColor="@color/black" />
-            
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
