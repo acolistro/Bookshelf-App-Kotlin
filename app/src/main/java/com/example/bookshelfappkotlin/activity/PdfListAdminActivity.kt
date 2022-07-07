@@ -1,4 +1,4 @@
-package com.example.bookshelfappkotlin
+package com.example.bookshelfappkotlin.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

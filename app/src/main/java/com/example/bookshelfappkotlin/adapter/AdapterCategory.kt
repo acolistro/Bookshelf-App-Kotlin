@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfappkotlin.FilterCategory
-import com.example.bookshelfappkotlin.PdfListAdminActivity
+import com.example.bookshelfappkotlin.activity.PdfListAdminActivity
 import com.example.bookshelfappkotlin.databinding.RowCategoryBinding
 import com.example.bookshelfappkotlin.model.ModelCategory
 import com.google.firebase.database.FirebaseDatabase

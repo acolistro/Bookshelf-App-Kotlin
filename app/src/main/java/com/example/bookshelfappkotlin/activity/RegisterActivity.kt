@@ -1,4 +1,4 @@
-package com.example.bookshelfappkotlin
+package com.example.bookshelfappkotlin.activity
 
 import android.app.ProgressDialog
 import android.content.Intent
