@@ -1,4 +1,4 @@
-package com.example.bookshelfappkotlin
+package com.example.bookshelfappkotlin.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookshelfappkotlin.FilterPdfAdmin
+import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.databinding.RowPdfAdminBinding
 import com.example.bookshelfappkotlin.model.ModelPdf
 
@@ -59,9 +61,24 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
         //Category id
         MyApplication.loadCategory(categoryId, holder.categoryTv)
         //we don't need a page number here, pass null for page number // load pdf thumbnail
-        MyApplication.loadPdfFromUrlSinglePage(pdfUrl, title, holder.pdfView, holder.progressBar, null)
+        MyApplication.loadPdfFromUrlSinglePage(
+            pdfUrl,
+            title,
+            holder.pdfView,
+            holder.progressBar,
+            null
+        )
         //load pdf size
         MyApplication.loadPdfSize(pdfUrl, title, holder.sizeTv)
+
+        //Handle click, show dialog with options 1) Edit Book 2) Delete Book
+        holder.moreBtn.setOnClickListener {
+            moreOptionsDialog(model, holder)
+        }
+    }
+
+    private fun moreOptionsDialog(model: ModelPdf, holder: AdapterPdfAdmin.HolderPdfAdmin) {
+
     }
 
     override fun getItemCount(): Int {
