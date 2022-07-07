@@ -102,6 +102,7 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
                     context.startActivity(intent)
                 } else if (position == 1) {
                     //Delete is clicked
+                    MyApplication.deleteBook(context, bookId, bookUrl, bookTitle)
                 }
             }
             .show()
