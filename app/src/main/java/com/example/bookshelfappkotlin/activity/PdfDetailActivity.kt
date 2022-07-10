@@ -3,7 +3,7 @@ package com.example.bookshelfappkotlin.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bookshelfappkotlin.MyApplication
-import com.example.bookshelfappkotlin.R
+import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewCount
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,6 +25,9 @@ class PdfDetailActivity : AppCompatActivity() {
 
         //get book id from intent
         bookId = intent.getStringExtra("bookId")!!
+
+        //increment book view count whenever this screen starts
+        incrementBookViewCount(bookId)
 
         loadBookDetails()
 
@@ -53,6 +56,20 @@ class PdfDetailActivity : AppCompatActivity() {
 
                     //format date
                     val date = MyApplication.formatTimeStamp(timestamp)
+
+                    //load pdf category
+                    MyApplication.loadCategory(categoryId, binding.categoryTv)
+                    //load pdf thumbnail, pages count
+                    MyApplication.loadPdfFromUrlSinglePage("$url", "$title", binding.pdfView, binding.progressBar, binding.pagesTv)
+                    //load pdf size
+                    MyApplication.loadPdfSize("$url", "$title", binding.sizeTv)
+
+                    //set data
+                    binding.titleTv.text = title
+                    binding.descriptionTv.text = description
+                    binding.viewsTv.text = viewsCount
+                    binding.downloadsTv.text = downloadsCount
+                    binding.dateTv.text = date
                 }
 
                 override fun onCancelled(error: DatabaseError) {
