@@ -23,7 +23,7 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
 
     //arrayList to hold pdfs
     public var pdfArrayList: ArrayList<ModelPdf>
-    private val filterlist: ArrayList<ModelPdf>
+    private val filterList: ArrayList<ModelPdf>
 
     //view binding
     private lateinit var binding: RowPdfAdminBinding
@@ -35,7 +35,7 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
     constructor(context: android.content.Context, pdfArrayList: ArrayList<ModelPdf>) : super() {
         this.context = context
         this.pdfArrayList = pdfArrayList
-        this.filterlist = pdfArrayList
+        this.filterList = pdfArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderPdfAdmin {
@@ -124,7 +124,7 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
 
     override fun getFilter(): Filter {
         if (filter == null) {
-            filter = FilterPdfAdmin(filterlist, this)
+            filter = FilterPdfAdmin(filterList, this)
         }
         return filter as FilterPdfAdmin
     }
