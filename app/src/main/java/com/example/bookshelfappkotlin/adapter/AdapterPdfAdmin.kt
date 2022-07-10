@@ -11,6 +11,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfappkotlin.FilterPdfAdmin
 import com.example.bookshelfappkotlin.MyApplication
+import com.example.bookshelfappkotlin.activity.PdfDetailActivity
 import com.example.bookshelfappkotlin.activity.PdfEditActivity
 import com.example.bookshelfappkotlin.databinding.RowPdfAdminBinding
 import com.example.bookshelfappkotlin.model.ModelPdf
@@ -79,6 +80,15 @@ class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fi
         holder.moreBtn.setOnClickListener {
             moreOptionsDialog(model, holder)
         }
+
+        //handle item click, open PdfDetailActivity
+        holder.itemView.setOnClickListener {
+            //intent with book id
+            val intent = Intent(context, PdfDetailActivity::class.java)
+            intent.putExtra("bookId", pdfId) //will be used to load book details
+            context.startActivity(intent)
+        }
+
     }
 
     private fun moreOptionsDialog(model: ModelPdf, holder: AdapterPdfAdmin.HolderPdfAdmin) {
