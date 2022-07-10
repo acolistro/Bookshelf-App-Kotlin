@@ -1,5 +1,6 @@
 package com.example.bookshelfappkotlin.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bookshelfappkotlin.MyApplication
@@ -34,6 +35,13 @@ class PdfDetailActivity : AppCompatActivity() {
         //handle back button click, go back
         binding.backBtn.setOnClickListener {
             onBackPressed()
+        }
+
+        //handle click, open pdf view activity
+        binding.readBookBtn.setOnClickListener {
+            val intent = Intent(this, PdfViewActivity::class.java)
+            intent.putExtra("bookId", bookId)
+            startActivity(intent)
         }
 
     }
