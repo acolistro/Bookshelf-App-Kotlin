@@ -1,6 +1,5 @@
 package com.example.bookshelfappkotlin.activity
 
-import android.app.DownloadManager
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -22,7 +21,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.FileOutputStream
 import java.lang.Exception
-import java.util.jar.Manifest
 
 class PdfDetailActivity : AppCompatActivity() {
 
@@ -120,6 +118,7 @@ class PdfDetailActivity : AppCompatActivity() {
         Log.d(TAG, "saveToDownloadsFolder: saving downloaded book...")
 
         val nameWithExtension = "$bookTitle"
+        //val nameWithExtension = "${System.currentTimeMillis()}.pdf"
 
         try {
             val downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
