@@ -144,7 +144,46 @@ class PdfDetailActivity : AppCompatActivity() {
     }
 
     private fun incrementDownloadCount() {
-        //increment downloads count to firebase
+        //increment downloads count to firebase db
+        Log.d(TAG, "incrementDownloadCount: ")
+        
+        //Step 1) Get previous downloads count
+        val ref = FirebaseDatabase.getInstance().getReference("Books")
+        ref.child(bookId)
+            .addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //get downloads count
+                    var downloadsCount = "${snapshot.child("downloadsCount").value}"
+                    Log.d(TAG, "onDataChange: Current Downloads Count: $downloadsCount")
+                    
+                    if (downloadsCount == "" || downloadsCount == "null") {
+                        downloadsCount = "0"
+                    }
+                    
+                    //convert to long and increment 1
+                    val newDownloadCount: Long = downloadsCount.toLong() + 1
+                    Log.d(TAG, "onDataChange: New Downloads Count: $newDownloadCount")
+                    
+                    //setup data to update to db
+                    val hashMap: HashMap<String, Any> = HashMap()
+                    hashMap["downloadsCount"] = newDownloadCount
+                    
+                    //Step 2) Update new incremented downloads count to db
+                    val dbref = FirebaseDatabase.getInstance().getReference("Books")
+                    dbref.child(bookId)
+                        .updateChildren(hashMap)
+                        .addOnSuccessListener {
+                            Log.d(TAG, "onDataChange: Downloads count incremented")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.d(TAG, "onDataChange: FAILED to increment due to ${e.message}")
+                        }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    
+                }
+            })
     }
 
     private fun loadBookDetails() {
