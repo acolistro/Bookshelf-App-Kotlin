@@ -9,6 +9,9 @@
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/drawable/shape_button_03.xml" value="0.1" />
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/drawable/shape_toolbar_01.xml" value="0.123" />
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/drawable/shape_toolbar_02.xml" value="0.123" />
+        <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/drawable/tab_background_selected.xml" value="0.134" />
+        <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/drawable/tab_background_unselected.xml" value="0.134" />
+        <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/drawable/tab_selector.xml" value="0.134" />
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/layout/activity_category_add.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.15306122448979592" />
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/layout/activity_dashboard_user.xml" value="0.27291666666666664" />
@@ -23,6 +26,7 @@
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/layout/activity_splash.xml" value="0.18" />
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/layout/row_category.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/layout/row_pdf_admin.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/ThinkPad/AndroidStudioProjects/BookshelfAppKotlin/app/src/main/res/layout/row_pdf_user.xml" value="0.27291666666666664" />
       </map>
     </option>
   </component>
