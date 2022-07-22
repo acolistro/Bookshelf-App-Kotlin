@@ -29,7 +29,7 @@ class AdapterPDFUser: RecyclerView.Adapter<AdapterPDFUser.HolderPdfUser>, Filter
 
     private var filter: FilterPdfUser? = null
 
-    constructor(context: Context, pdfArrayList: ArrayList<ModelPdf>, binding: RowPdfUserBinding) {
+    constructor(context: Context, pdfArrayList: ArrayList<ModelPdf>) {
         this.context = context
         this.pdfArrayList = pdfArrayList
         this.filterList = pdfArrayList
