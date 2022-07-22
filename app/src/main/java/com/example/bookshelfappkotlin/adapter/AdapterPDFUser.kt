@@ -5,26 +5,34 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookshelfappkotlin.FilterPdfUser
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.activity.PdfDetailActivity
 import com.example.bookshelfappkotlin.databinding.RowPdfUserBinding
 import com.example.bookshelfappkotlin.model.ModelPdf
 
-class AdapterPDFUser: RecyclerView.Adapter<AdapterPDFUser.HolderPdfUser> {
+class AdapterPDFUser: RecyclerView.Adapter<AdapterPDFUser.HolderPdfUser>, Filterable {
 
     //Context, get using constuctor
-    private lateinit var context: Context
+    private var context: Context
 
     //ArrayList to hold PDFs, get using constructor
-    private lateinit var pdfArrayList: ArrayList<ModelPdf>
+    public var pdfArrayList: ArrayList<ModelPdf> //to access in filter class
+    //arrayList to hold filtered pdfs
+    public var filterList: ArrayList<ModelPdf>
 
     //viewBinding row_pdf_user.xml => RowPdfUserBinding
     private lateinit var binding: RowPdfUserBinding
 
+    private var filter: FilterPdfUser? = null
+
     constructor(context: Context, pdfArrayList: ArrayList<ModelPdf>, binding: RowPdfUserBinding) {
         this.context = context
         this.pdfArrayList = pdfArrayList
+        this.filterList = pdfArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderPdfUser {
@@ -73,6 +81,13 @@ class AdapterPDFUser: RecyclerView.Adapter<AdapterPDFUser.HolderPdfUser> {
         return pdfArrayList.size //return list size/number of records
     }
 
+    override fun getFilter(): Filter {
+        if (filter == null) {
+            filter = FilterPdfUser(filterList, this)
+        }
+        return filter as FilterPdfUser
+    }
+
     /*ViewHolder class row_pdf_user.xml*/
 
     inner class HolderPdfUser(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -85,5 +100,4 @@ class AdapterPDFUser: RecyclerView.Adapter<AdapterPDFUser.HolderPdfUser> {
         var sizeTv = binding.sizeTv
         var dateTv = binding.dateTv
     }
-
 }
