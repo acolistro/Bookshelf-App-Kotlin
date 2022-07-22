@@ -1,7 +1,7 @@
 package com.example.bookshelfappkotlin
 
 import android.widget.Filter
-import com.example.bookshelfappkotlin.adapter.AdapterPDFUser
+import com.example.bookshelfappkotlin.adapters.AdapterPDFUser
 import com.example.bookshelfappkotlin.model.ModelPdf
 
 class FilterPdfUser: Filter {

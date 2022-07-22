@@ -14,40 +14,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
-            android:name=".activity.PdfViewActivity"
+            android:name=".activities.PdfViewActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PdfDetailActivity"
+            android:name=".activities.PdfDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PdfEditActivity"
+            android:name=".activities.PdfEditActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PdfListAdminActivity"
+            android:name=".activities.PdfListAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PdfAddActivity"
+            android:name=".activities.PdfAddActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.CategoryAddActivity"
+            android:name=".activities.CategoryAddActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DashboardAdminActivity"
+            android:name=".activities.DashboardAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DashboardUserActivity"
+            android:name=".activities.DashboardUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

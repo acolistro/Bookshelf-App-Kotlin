@@ -1,11 +1,11 @@
-package com.example.bookshelfappkotlin.activity
+package com.example.bookshelfappkotlin.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.example.bookshelfappkotlin.adapter.AdapterCategory
+import com.example.bookshelfappkotlin.adapters.AdapterCategory
 import com.example.bookshelfappkotlin.databinding.ActivityDashboardAdminBinding
 import com.example.bookshelfappkotlin.model.ModelCategory
 import com.google.firebase.auth.FirebaseAuth

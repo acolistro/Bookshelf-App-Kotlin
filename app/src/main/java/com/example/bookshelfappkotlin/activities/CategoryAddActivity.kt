@@ -1,4 +1,4 @@
-package com.example.bookshelfappkotlin.activity
+package com.example.bookshelfappkotlin.activities
 
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package com.example.bookshelfappkotlin.activity
+package com.example.bookshelfappkotlin.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -1,7 +1,6 @@
-package com.example.bookshelfappkotlin.adapter
+package com.example.bookshelfappkotlin.adapters
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,8 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfappkotlin.FilterPdfAdmin
 import com.example.bookshelfappkotlin.MyApplication
-import com.example.bookshelfappkotlin.activity.PdfDetailActivity
-import com.example.bookshelfappkotlin.activity.PdfEditActivity
+import com.example.bookshelfappkotlin.activities.PdfDetailActivity
+import com.example.bookshelfappkotlin.activities.PdfEditActivity
 import com.example.bookshelfappkotlin.databinding.RowPdfAdminBinding
 import com.example.bookshelfappkotlin.model.ModelPdf
 

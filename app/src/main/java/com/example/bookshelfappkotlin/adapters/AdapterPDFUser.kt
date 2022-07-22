@@ -1,4 +1,4 @@
-package com.example.bookshelfappkotlin.adapter
+package com.example.bookshelfappkotlin.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfappkotlin.FilterPdfUser
 import com.example.bookshelfappkotlin.MyApplication
-import com.example.bookshelfappkotlin.activity.PdfDetailActivity
+import com.example.bookshelfappkotlin.activities.PdfDetailActivity
 import com.example.bookshelfappkotlin.databinding.RowPdfUserBinding
 import com.example.bookshelfappkotlin.model.ModelPdf
 
