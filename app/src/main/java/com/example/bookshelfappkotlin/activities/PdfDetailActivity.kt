@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.example.bookshelfappkotlin.Constants
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewCount
+import com.example.bookshelfappkotlin.R
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -40,6 +41,9 @@ class PdfDetailActivity : AppCompatActivity() {
     private var bookTitle = ""
     private var bookUrl = ""
 
+    //Will hold a bool value to indicate either in favs or not of current user
+    private var isInMyFavorites = false
+
     private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var progressDialog: ProgressDialog
@@ -59,6 +63,10 @@ class PdfDetailActivity : AppCompatActivity() {
 
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
+        if (firebaseAuth.currentUser != null) {
+            //user is logged in, check if book is in fav or not
+            checkIsFavorite()
+        }
 
         //increment book view count whenever this screen starts
         incrementBookViewCount(bookId)
@@ -99,7 +107,13 @@ class PdfDetailActivity : AppCompatActivity() {
                 Toast.makeText(this, "You're not logged in", Toast.LENGTH_SHORT).show()
             } else {
                 //user is logged in, favorite functionality available
-
+                if (isInMyFavorites) {
+                    //Already in favorites, remove
+                    removeFromFavorites()
+                } else {
+                    //Not in favorites, add
+                    addToFavorites()
+                }
             }
         }
     }
@@ -246,7 +260,31 @@ class PdfDetailActivity : AppCompatActivity() {
     }
 
     private fun checkIsFavorite() {
+        Log.d(TAG, "checkIsFavorite: Checking if book is in fav or not")
 
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
+            .addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    isInMyFavorites = snapshot.exists()
+                    if (isInMyFavorites) {
+                        //Available in favorites
+                        Log.d(TAG, "onDataChange: Available on favorites")
+                            //Set drawable top icon
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_filled_white, 0, 0)
+                        binding.favoriteBtn.text = "Remove Favorite"
+                    } else {
+                        //Not available in favorites
+                        Log.d(TAG, "onDataChange: Not available in favorites")
+                            //Set drawable top icon
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_border_white, 0, 0)
+                        binding.favoriteBtn.text = "Add to Favorite"
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
     }
 
     private fun addToFavorites() {
