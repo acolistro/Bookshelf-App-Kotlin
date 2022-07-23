@@ -13,7 +13,10 @@ import androidx.core.content.ContextCompat
 import com.example.bookshelfappkotlin.Constants
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewCount
+import com.example.bookshelfappkotlin.R
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -38,6 +41,11 @@ class PdfDetailActivity : AppCompatActivity() {
     private var bookTitle = ""
     private var bookUrl = ""
 
+    //Will hold a bool value to indicate either in favs or not of current user
+    private var isInMyFavorites = false
+
+    private lateinit var firebaseAuth: FirebaseAuth
+
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +60,13 @@ class PdfDetailActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
+
+        //init firebase auth
+        firebaseAuth = FirebaseAuth.getInstance()
+        if (firebaseAuth.currentUser != null) {
+            //user is logged in, check if book is in fav or not
+            checkIsFavorite()
+        }
 
         //increment book view count whenever this screen starts
         incrementBookViewCount(bookId)
@@ -80,6 +95,25 @@ class PdfDetailActivity : AppCompatActivity() {
             } else {
                 Log.d(TAG, "onCreate: STORAGE PERMISSION was not granted, must be requested")
                 requestStoragePermissionLauncher.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+        }
+
+        //handle click, add/remove favorite
+        binding.favoriteBtn.setOnClickListener {
+            //We can add only if user is logged in
+            //1)Check if user is logged in or not
+            if (firebaseAuth.currentUser == null) {
+                //user not logged in, can't do favorite functionality
+                Toast.makeText(this, "You're not logged in", Toast.LENGTH_SHORT).show()
+            } else {
+                //user is logged in, favorite functionality available
+                if (isInMyFavorites) {
+                    //Already in favorites, remove
+                    removeFromFavorites()
+                } else {
+                    //Not in favorites, add
+                    addToFavorites()
+                }
             }
         }
     }
@@ -223,5 +257,75 @@ class PdfDetailActivity : AppCompatActivity() {
 
                 }
             })
+    }
+
+    private fun checkIsFavorite() {
+        Log.d(TAG, "checkIsFavorite: Checking if book is in fav or not")
+
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
+            .addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    isInMyFavorites = snapshot.exists()
+                    if (isInMyFavorites) {
+                        //Available in favorites
+                        Log.d(TAG, "onDataChange: Available on favorites")
+                            //Set drawable top icon
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_filled_white, 0, 0)
+                        binding.favoriteBtn.text = "Remove Favorite"
+                    } else {
+                        //Not available in favorites
+                        Log.d(TAG, "onDataChange: Not available in favorites")
+                            //Set drawable top icon
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_border_white, 0, 0)
+                        binding.favoriteBtn.text = "Add to Favorite"
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+    }
+
+    private fun addToFavorites() {
+        Log.d(TAG, "addToFavorites: Adding to favorites")
+        val timestamp = System.currentTimeMillis()
+
+        //set up data to add in db
+        val hashMap = HashMap<String, Any>()
+        hashMap["bookId"] = bookId
+        hashMap["timestamp"] = timestamp
+
+        //save to db
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
+            .setValue(hashMap)
+            .addOnSuccessListener {
+                //added to favorites
+                Log.d(TAG, "addToFavorites: Added to favorites")
+                Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                //failed to add to favorites
+                Log.d(TAG, "addToFavorites: Failed to add to favorites due to ${e.message}")
+                Toast.makeText(this, "Failed to add to favorites due to ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun removeFromFavorites() {
+        Log.d(TAG, "removeFromFavorites: Removing from favorites")
+
+        //database ref
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
+            .removeValue()
+            .addOnSuccessListener {
+                Log.d(TAG, "removeFromFavorites: Removed from favorites")
+                Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Log.d(TAG, "removeFromFavorites: Failed to remove from favorites due to ${e.message}")
+                Toast.makeText(this, "Failed to remove from favorites due to ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 }
