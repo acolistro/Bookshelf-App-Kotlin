@@ -1,11 +1,11 @@
-package com.example.bookshelfappkotlin.activity
+package com.example.bookshelfappkotlin.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import com.example.bookshelfappkotlin.adapter.AdapterPdfAdmin
+import com.example.bookshelfappkotlin.adapters.AdapterPdfAdmin
 import com.example.bookshelfappkotlin.databinding.ActivityPdfListAdminBinding
 import com.example.bookshelfappkotlin.model.ModelPdf
 import com.google.firebase.database.DataSnapshot
