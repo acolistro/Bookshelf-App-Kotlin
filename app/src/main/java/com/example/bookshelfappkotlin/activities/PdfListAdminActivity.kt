@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import com.example.bookshelfappkotlin.adapters.AdapterPdfAdmin
 import com.example.bookshelfappkotlin.databinding.ActivityPdfListAdminBinding
-import com.example.bookshelfappkotlin.model.ModelPdf
+import com.example.bookshelfappkotlin.models.ModelPdf
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

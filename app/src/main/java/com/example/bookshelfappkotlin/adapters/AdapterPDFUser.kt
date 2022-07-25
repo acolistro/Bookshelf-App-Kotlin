@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookshelfappkotlin.FilterPdfUser
+import com.example.bookshelfappkotlin.filters.FilterPdfUser
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.activities.PdfDetailActivity
 import com.example.bookshelfappkotlin.databinding.RowPdfUserBinding
-import com.example.bookshelfappkotlin.model.ModelPdf
+import com.example.bookshelfappkotlin.models.ModelPdf
 
 class AdapterPDFUser: RecyclerView.Adapter<AdapterPDFUser.HolderPdfUser>, Filterable {
 

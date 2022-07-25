@@ -1,8 +1,8 @@
-package com.example.bookshelfappkotlin
+package com.example.bookshelfappkotlin.filters
 
 import android.widget.Filter
 import com.example.bookshelfappkotlin.adapters.AdapterPdfAdmin
-import com.example.bookshelfappkotlin.model.ModelPdf
+import com.example.bookshelfappkotlin.models.ModelPdf
 
 /*Used to filter data from recyclerview | search pdf from pdf list in recyclerview*/
 class FilterPdfAdmin : Filter {

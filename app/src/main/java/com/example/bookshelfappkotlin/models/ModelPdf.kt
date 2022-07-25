@@ -1,4 +1,4 @@
-package com.example.bookshelfappkotlin.model
+package com.example.bookshelfappkotlin.models
 
 class ModelPdf {
 

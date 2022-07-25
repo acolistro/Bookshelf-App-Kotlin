@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookshelfappkotlin.FilterPdfAdmin
+import com.example.bookshelfappkotlin.filters.FilterPdfAdmin
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.activities.PdfDetailActivity
 import com.example.bookshelfappkotlin.activities.PdfEditActivity
 import com.example.bookshelfappkotlin.databinding.RowPdfAdminBinding
-import com.example.bookshelfappkotlin.model.ModelPdf
+import com.example.bookshelfappkotlin.models.ModelPdf
 
 class AdapterPdfAdmin : RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Filterable {
 
