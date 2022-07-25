@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import com.example.bookshelfappkotlin.adapters.AdapterPDFUser
 import com.example.bookshelfappkotlin.databinding.FragmentBookUserBinding
-import com.example.bookshelfappkotlin.model.ModelPdf
+import com.example.bookshelfappkotlin.models.ModelPdf
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

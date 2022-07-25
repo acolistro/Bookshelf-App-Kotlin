@@ -7,7 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import com.example.bookshelfappkotlin.adapters.AdapterCategory
 import com.example.bookshelfappkotlin.databinding.ActivityDashboardAdminBinding
-import com.example.bookshelfappkotlin.model.ModelCategory
+import com.example.bookshelfappkotlin.models.ModelCategory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -68,6 +68,11 @@ class DashboardAdminActivity : AppCompatActivity() {
         //handle click, start add pdf page
         binding.addPdfFab.setOnClickListener {
             startActivity(Intent(this, PdfAddActivity::class.java))
+        }
+
+        //handle click, open profile
+        binding.profileBtn.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
     }
 
