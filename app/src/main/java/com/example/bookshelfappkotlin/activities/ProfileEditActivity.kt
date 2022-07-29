@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.widget.PopupMenu
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
@@ -105,8 +104,8 @@ class ProfileEditActivity : AppCompatActivity() {
             .addOnSuccessListener { taskSnapshot ->
                 //image uploaded, get url of uploaded image
                 val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
-                while (!uriTask.isSuccessful)
-                    val uploadedImageUrl = "${uriTask.result}"
+                while (!uriTask.isSuccessful);
+                val uploadedImageUrl = "${uriTask.result}"
 
                 updateProfile(uploadedImageUrl)
             }
@@ -119,6 +118,28 @@ class ProfileEditActivity : AppCompatActivity() {
 
     private fun updateProfile(uploadedImageUrl: String) {
         progressDialog.setMessage("Updating profile...")
+
+        //set up info to update to db
+        val hashMap: HashMap<String, Any> = HashMap()
+        hashMap["name"] = "$name"
+        if (imageUri != null) {
+            hashMap["profileImage"] = uploadedImageUrl
+        }
+
+        //update to db
+        val reference = FirebaseDatabase.getInstance().getReference("Users")
+        reference.child(firebaseAuth.uid!!)
+            .updateChildren(hashMap)
+            .addOnSuccessListener {
+                //profile updated
+                progressDialog.dismiss()
+                Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                //failed to upload image
+                progressDialog.dismiss()
+                Toast.makeText(this, "Failed to update profile due to ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun loadUserInfo() {
@@ -128,7 +149,6 @@ class ProfileEditActivity : AppCompatActivity() {
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     //get user info
-                    val email = "${snapshot.child("email").value}"
                     val name = "${snapshot.child("name").value}"
                     val profileImage = "${snapshot.child("profileImage").value}"
                     val timestamp = "${snapshot.child("timestamp").value}"

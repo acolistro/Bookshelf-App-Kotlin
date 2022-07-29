@@ -1,5 +1,6 @@
 package com.example.bookshelfappkotlin.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -35,9 +36,8 @@ class ProfileActivity : AppCompatActivity() {
 
         //handle click, open edit profile
         binding.profileEditBtn.setOnClickListener {
-
+            startActivity(Intent(this, ProfileEditActivity::class.java))
         }
-
     }
 
     private fun loadUserInfo() {
