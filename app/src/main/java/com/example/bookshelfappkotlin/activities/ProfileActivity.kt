@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.R
 import com.example.bookshelfappkotlin.databinding.ActivityProfileBinding
+import com.example.bookshelfappkotlin.models.ModelPdf
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +21,9 @@ class ProfileActivity : AppCompatActivity() {
 
     //firebase auth
     private lateinit var firebaseAuth: FirebaseAuth
+
+    //arrayList to hold books
+    private lateinit var booksArrayList: ArrayList<ModelPdf>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,5 +82,9 @@ class ProfileActivity : AppCompatActivity() {
 
                 }
             })
+    }
+
+    private fun loadFavoriteBooks() {
+        
     }
 }

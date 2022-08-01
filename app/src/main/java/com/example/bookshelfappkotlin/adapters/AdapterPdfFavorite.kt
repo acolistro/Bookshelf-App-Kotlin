@@ -74,6 +74,17 @@ class AdapterPdfFavorite : RecyclerView.Adapter<AdapterPdfFavorite.HolderPdfFavo
                     val url = "${snapshot.child("url").value}"
                     val viewsCount = "${snapshot.child("viewsCount").value}"
 
+                    //set data to model
+                    model.isFavorite = true
+                    model.title = title
+                    model.description = description
+                    model.categoryId = categoryId
+                    model.timestamp = timestamp
+                    model.uid = uid
+                    model.url = url
+                    model.viewsCount = viewsCount.toLong()
+                    model.downloadsCount = downloadsCount.toLong()
+
                     //format date
                     val date = MyApplication.formatTimeStamp(timestamp)
 
