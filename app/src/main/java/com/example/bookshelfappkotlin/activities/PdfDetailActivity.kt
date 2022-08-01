@@ -16,7 +16,6 @@ import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewC
 import com.example.bookshelfappkotlin.R
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -109,7 +108,7 @@ class PdfDetailActivity : AppCompatActivity() {
                 //user is logged in, favorite functionality available
                 if (isInMyFavorites) {
                     //Already in favorites, remove
-                    removeFromFavorites()
+                    MyApplication.removeFromFavorites(this, bookId)
                 } else {
                     //Not in favorites, add
                     addToFavorites()
@@ -312,20 +311,4 @@ class PdfDetailActivity : AppCompatActivity() {
             }
     }
 
-    private fun removeFromFavorites() {
-        Log.d(TAG, "removeFromFavorites: Removing from favorites")
-
-        //database ref
-        val ref = FirebaseDatabase.getInstance().getReference("Users")
-        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
-            .removeValue()
-            .addOnSuccessListener {
-                Log.d(TAG, "removeFromFavorites: Removed from favorites")
-                Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Log.d(TAG, "removeFromFavorites: Failed to remove from favorites due to ${e.message}")
-                Toast.makeText(this, "Failed to remove from favorites due to ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
 }
