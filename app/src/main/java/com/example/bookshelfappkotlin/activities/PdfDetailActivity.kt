@@ -16,7 +16,6 @@ import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewC
 import com.example.bookshelfappkotlin.R
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

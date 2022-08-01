@@ -92,6 +92,7 @@ class MyApplication: Application() {
                             Log.d(TAG, "loadPdfFromUrlSinglePage: ${t.message}")
                         }
                         .onPageError { page, t ->
+                            progressBar.visibility = View.INVISIBLE
                             Log.d(TAG, "loadPdfFromUrlSinglePage: ${t.message}")
                         }
                         .onLoad { nbPages ->
