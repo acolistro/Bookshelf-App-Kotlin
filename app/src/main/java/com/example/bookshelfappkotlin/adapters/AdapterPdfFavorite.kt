@@ -62,17 +62,17 @@ class AdapterPdfFavorite : RecyclerView.Adapter<AdapterPdfFavorite.HolderPdfFavo
 
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.child(bookId)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     //get book info
                     val categoryId = "${snapshot.child("categoryId").value}"
                     val description = "${snapshot.child("description").value}"
                     val downloadsCount = "${snapshot.child("downloadsCount").value}"
-                    val timestamp = "${snapshot.child("timestamp").value}"
+                    var timestamp = "${snapshot.child("timestamp").value}"
                     val title = "${snapshot.child("title").value}"
                     val uid = "${snapshot.child("uid").value}"
                     val url = "${snapshot.child("url").value}"
-                    val viewsCount = "${snapshot.child("viewsCount").value}"
+                    var viewsCount = "${snapshot.child("viewsCount").value}"
 
                     //set data to model
                     model.isFavorite = true

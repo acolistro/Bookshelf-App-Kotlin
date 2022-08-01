@@ -34,6 +34,7 @@ class ProfileActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         loadUserInfo()
+        loadFavoriteBooks()
 
         //handle click, go back
         binding.backBtn.setOnClickListener {
@@ -102,13 +103,13 @@ class ProfileActivity : AppCompatActivity() {
 
                         //set to model
                         val modelPdf =  ModelPdf()
-                        modelPdf.id
+                        modelPdf.id = bookId
 
                         //add model to list
                         booksArrayList.add(modelPdf)
                     }
                     //set number of favorite books
-                    binding.favoriteBookCountTv.text = "$booksArrayList.size"
+                    binding.favoriteBookCountTv.text = "${booksArrayList.size}"
 
                     //set up adapter
                     adapterPdfFavorite = AdapterPdfFavorite(this@ProfileActivity, booksArrayList)
