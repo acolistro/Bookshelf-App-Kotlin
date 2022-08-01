@@ -1,11 +1,13 @@
 package com.example.bookshelfappkotlin.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookshelfappkotlin.MyApplication
+import com.example.bookshelfappkotlin.activities.PdfDetailActivity
 import com.example.bookshelfappkotlin.databinding.RowPdfFavoriteBinding
 import com.example.bookshelfappkotlin.models.ModelPdf
 import com.google.firebase.database.DataSnapshot
@@ -41,6 +43,18 @@ class AdapterPdfFavorite : RecyclerView.Adapter<AdapterPdfFavorite.HolderPdfFavo
         val model = booksArrayList[position]
 
         loadBookDetails(model, holder)
+
+        //handle click, open pdf details page, pass book id to load details
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, PdfDetailActivity::class.java)
+            intent.putExtra("bookId", model.id) //pass book id not category id
+            context.startActivity(intent)
+        }
+
+        //handle click, remove from favorite
+        holder.removeFavBtn.setOnClickListener {
+            MyApplication.removeFromFavorites(context, model.id)
+        }
     }
 
     private fun loadBookDetails(model: ModelPdf, holder: AdapterPdfFavorite.HolderPdfFavorite) {
