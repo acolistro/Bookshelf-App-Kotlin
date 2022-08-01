@@ -199,6 +199,7 @@
 
     <!--RecyclerView: Show fav books-->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoriteRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/favoritesLabelTv"
