@@ -1,5 +1,6 @@
 package com.example.bookshelfappkotlin.activities
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -15,6 +17,7 @@ import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewCount
 import com.example.bookshelfappkotlin.R
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
+import com.example.bookshelfappkotlin.databinding.DialogCommentAddBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -115,6 +118,29 @@ class PdfDetailActivity : AppCompatActivity() {
                 }
             }
         }
+
+        //handle click, show add comment dialog
+        binding.addCommentBtn.setOnClickListener {
+            /*To add a comment, user must be logged in, if not just show a message 'You're not logged in'*/
+            if (firebaseAuth.currentUser == null) {
+                //user not logged in, don't allow adding comment
+                Toast.makeText(this, "You're not logged in", Toast.LENGTH_SHORT).show()
+            } else {
+                //user logged in, allow adding comment
+                addCommentDialog()
+            }
+        }
+
+    }
+
+    private var comment = ""
+
+    private fun addCommentDialog() {
+        //inflate/bind view for dialog dialog_comment_add.xml
+        val commentAddBinding = DialogCommentAddBinding.inflate(LayoutInflater.from(this))
+
+        //set up alert dialog
+        val builder = AlertDialog.Builder(this)
     }
 
     private val requestStoragePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted:Boolean ->
