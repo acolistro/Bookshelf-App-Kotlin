@@ -222,6 +222,39 @@
                 android:text="The description of the book."
                 android:textColor="@color/black" />
 
+            <!--View: to separate-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/gray_03"
+                android:layout_marginTop="5dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--TextView: Comments Label-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comments"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:padding="5dp"/>
+
+                <!--ImageButton: Show dialog to add comment-->
+                <ImageButton
+                    android:id="@+id/addCommentBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_comment_add_black"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+
+
         </LinearLayout>
     </ScrollView>
 
