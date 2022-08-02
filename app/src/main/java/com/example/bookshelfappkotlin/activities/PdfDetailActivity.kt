@@ -16,6 +16,7 @@ import com.example.bookshelfappkotlin.Constants
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewCount
 import com.example.bookshelfappkotlin.R
+import com.example.bookshelfappkotlin.adapters.AdapterComment
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
 import com.example.bookshelfappkotlin.databinding.DialogCommentAddBinding
 import com.example.bookshelfappkotlin.models.ModelComment
@@ -54,6 +55,7 @@ class PdfDetailActivity : AppCompatActivity() {
     //arrayList to cold comments
     private lateinit var commentArrayList: ArrayList<ModelComment>
     //adapter to be set to recyclerview
+    private lateinit var adapterComment: AdapterComment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,7 +142,33 @@ class PdfDetailActivity : AppCompatActivity() {
     }
 
     private fun showComments() {
+        //init arrayList
+        commentArrayList = ArrayList()
 
+        //db path to load comments
+        val ref = FirebaseDatabase.getInstance().getReference("Books")
+        ref.child(bookId).child("Comments")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //clear list
+                    commentArrayList.clear()
+                    for (ds in snapshot.children) {
+                        //get data s model, be careful of spelling and data type
+                        val model = ds.getValue(ModelComment::class.java)
+                        //add to list
+                        commentArrayList.add(model!!)
+                    }
+                    //set up adapter
+                    adapterComment = AdapterComment(this@PdfDetailActivity, commentArrayList)
+                    //set adapter to recyclerview
+                    binding.commentsRv.adapter = adapterComment
+                }
+
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
     }
 
     private var comment = ""
