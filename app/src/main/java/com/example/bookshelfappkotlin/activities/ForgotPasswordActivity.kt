@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
-import com.example.bookshelfappkotlin.R
 import com.example.bookshelfappkotlin.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 
