@@ -249,7 +249,7 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
-                <!--ImageButton: Show dialog to add comment-->
+                <!--ImageButton: Show dialog to add new comment-->
                 <ImageButton
                     android:id="@+id/addCommentBtn"
                     android:layout_width="wrap_content"
@@ -258,6 +258,15 @@
                     android:background="@android:color/transparent"
                     android:padding="5dp"
                     android:src="@drawable/ic_comment_add_black" />
+
+                <!--Recycler view: Show comments-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentsRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/addCommentBtn"
+                    tools:listitem=""
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
             </RelativeLayout>
 
