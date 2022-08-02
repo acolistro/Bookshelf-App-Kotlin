@@ -16,7 +16,7 @@ import com.example.bookshelfappkotlin.models.ModelPdf
 
 class AdapterPDFUser: RecyclerView.Adapter<AdapterPDFUser.HolderPdfUser>, Filterable {
 
-    //Context, get using constuctor
+    //Context, get using constructor
     private var context: Context
 
     //ArrayList to hold PDFs, get using constructor
