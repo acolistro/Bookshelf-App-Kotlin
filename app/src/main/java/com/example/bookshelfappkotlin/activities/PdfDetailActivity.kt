@@ -1,5 +1,6 @@
 package com.example.bookshelfappkotlin.activities
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -14,7 +16,10 @@ import com.example.bookshelfappkotlin.Constants
 import com.example.bookshelfappkotlin.MyApplication
 import com.example.bookshelfappkotlin.MyApplication.Companion.incrementBookViewCount
 import com.example.bookshelfappkotlin.R
+import com.example.bookshelfappkotlin.adapters.AdapterComment
 import com.example.bookshelfappkotlin.databinding.ActivityPdfDetailBinding
+import com.example.bookshelfappkotlin.databinding.DialogCommentAddBinding
+import com.example.bookshelfappkotlin.models.ModelComment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -47,6 +52,11 @@ class PdfDetailActivity : AppCompatActivity() {
 
     private lateinit var progressDialog: ProgressDialog
 
+    //arrayList to cold comments
+    private lateinit var commentArrayList: ArrayList<ModelComment>
+    //adapter to be set to recyclerview
+    private lateinit var adapterComment: AdapterComment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPdfDetailBinding.inflate(layoutInflater)
@@ -71,6 +81,7 @@ class PdfDetailActivity : AppCompatActivity() {
         incrementBookViewCount(bookId)
 
         loadBookDetails()
+        showComments()
 
         //handle back button click, go back
         binding.backBtn.setOnClickListener {
@@ -115,6 +126,114 @@ class PdfDetailActivity : AppCompatActivity() {
                 }
             }
         }
+
+        //handle click, show add comment dialog
+        binding.addCommentBtn.setOnClickListener {
+            /*To add a comment, user must be logged in, if not just show a message 'You're not logged in'*/
+            if (firebaseAuth.currentUser == null) {
+                //user not logged in, don't allow adding comment
+                Toast.makeText(this, "You're not logged in", Toast.LENGTH_SHORT).show()
+            } else {
+                //user logged in, allow adding comment
+                addCommentDialog()
+            }
+        }
+
+    }
+
+    private fun showComments() {
+        //init arrayList
+        commentArrayList = ArrayList()
+
+        //db path to load comments
+        val ref = FirebaseDatabase.getInstance().getReference("Books")
+        ref.child(bookId).child("Comments")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //clear list
+                    commentArrayList.clear()
+                    for (ds in snapshot.children) {
+                        //get data s model, be careful of spelling and data type
+                        val model = ds.getValue(ModelComment::class.java)
+                        //add to list
+                        commentArrayList.add(model!!)
+                    }
+                    //set up adapter
+                    adapterComment = AdapterComment(this@PdfDetailActivity, commentArrayList)
+                    //set adapter to recyclerview
+                    binding.commentsRv.adapter = adapterComment
+                }
+
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+    }
+
+    private var comment = ""
+
+    private fun addCommentDialog() {
+        //inflate/bind view for dialog dialog_comment_add.xml
+        val commentAddBinding = DialogCommentAddBinding.inflate(LayoutInflater.from(this))
+
+        //set up alert dialog
+        val builder = AlertDialog.Builder(this, R.style.CustomDialog)
+        builder.setView(commentAddBinding.root)
+
+        //create and show alert dialog
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+        //handle click, dismiss dialog
+        commentAddBinding.backBtn.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        //handle click, add comment
+        commentAddBinding.submitBtn.setOnClickListener {
+            //get data
+            comment = commentAddBinding.commentEt.text.toString().trim()
+            //validate data
+            if (comment.isEmpty()) {
+                Toast.makeText(this, "Enter comment..", Toast.LENGTH_SHORT).show()
+            } else {
+                alertDialog.dismiss()
+                addComment()
+            }
+
+        }
+    }
+
+    private fun addComment() {
+        //show progress
+        progressDialog.setMessage("Adding Comment")
+        progressDialog.show()
+
+        //timestamp for comment id, comment timestamp etc
+        val timestamp = "" + System.currentTimeMillis()
+
+        //set up data to add in db for comment
+        val hashMap = HashMap<String, Any>()
+        hashMap["id"] = "$timestamp"
+        hashMap["bookId"] = "$bookId"
+        hashMap["timestamp"] = "$timestamp"
+        hashMap["comment"] = "$comment"
+        hashMap["uid"] = "${firebaseAuth.uid}"
+
+        //Db path to add data into it
+        //Books > bookId > Comments > commentId > commentData
+        val ref = FirebaseDatabase.getInstance().getReference("Books")
+        ref.child(bookId).child("Comments").child(timestamp)
+            .setValue(hashMap)
+            .addOnSuccessListener {
+                progressDialog.dismiss()
+                Toast.makeText(this, "Comment added...", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                progressDialog.dismiss()
+                Toast.makeText(this, "Failed to add comment due to ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private val requestStoragePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted:Boolean ->

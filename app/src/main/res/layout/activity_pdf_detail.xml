@@ -39,14 +39,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bookOptionsLl"
         android:layout_below="@id/toolbarRl"
-        android:padding="10dp"
-        android:layout_above="@+id/bookOptionsLl">
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <!--BookInfo-->
             <RelativeLayout
@@ -78,9 +78,9 @@
                 <!--Book Title-->
                 <TextView
                     android:id="@+id/titleTv"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_toEndOf="@id/pdfRl"
                     android:text="Book Title" />
 
@@ -89,125 +89,132 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/titleTv"
-                    android:layout_toEndOf="@id/pdfRl" >
+                    android:layout_toEndOf="@id/pdfRl">
 
                     <!--Category Row-->
                     <TableRow>
+
                         <TextView
                             android:id="@+id/categoryLabelTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="Category"
-                            android:layout_marginEnd="5dp" />
+                            android:layout_marginEnd="5dp"
+                            android:text="Category" />
+
                         <TextView
                             android:id="@+id/categoryTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="N/A"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="N/A" />
                     </TableRow>
 
                     <!--Date Row-->
-                    <TableRow
-                        android:layout_marginTop="5dp">
+                    <TableRow android:layout_marginTop="5dp">
+
                         <TextView
                             android:id="@+id/dateLabelTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="Size"
-                            android:layout_marginEnd="5dp" />
+                            android:layout_marginEnd="5dp"
+                            android:text="Size" />
+
                         <TextView
                             android:id="@+id/dateTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="N/A"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="N/A" />
                     </TableRow>
 
                     <!--Size Row-->
-                    <TableRow
-                        android:layout_marginTop="5dp">
+                    <TableRow android:layout_marginTop="5dp">
+
                         <TextView
                             android:id="@+id/sizeLabelTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="Category"
-                            android:layout_marginEnd="5dp" />
+                            android:layout_marginEnd="5dp"
+                            android:text="Category" />
+
                         <TextView
                             android:id="@+id/sizeTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="N/A"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="N/A" />
                     </TableRow>
 
                     <!--Views Count Row-->
-                    <TableRow
-                        android:layout_marginTop="5dp">
+                    <TableRow android:layout_marginTop="5dp">
+
                         <TextView
                             android:id="@+id/viewsLabelTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="Views"
-                            android:layout_marginEnd="5dp" />
+                            android:layout_marginEnd="5dp"
+                            android:text="Views" />
+
                         <TextView
                             android:id="@+id/viewsTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="N/A"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="N/A" />
                     </TableRow>
 
                     <!--Download Count Row-->
-                    <TableRow
-                        android:layout_marginTop="5dp">
+                    <TableRow android:layout_marginTop="5dp">
+
                         <TextView
                             android:id="@+id/downloadsLabelTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="Downloads"
-                            android:layout_marginEnd="5dp" />
+                            android:layout_marginEnd="5dp"
+                            android:text="Downloads" />
+
                         <TextView
                             android:id="@+id/downloadsTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="N/A"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="N/A" />
                     </TableRow>
 
                     <!--Number of Pages Row-->
-                    <TableRow
-                        android:layout_marginTop="5dp">
+                    <TableRow android:layout_marginTop="5dp">
+
                         <TextView
                             android:id="@+id/pagesLabelTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="Pages"
-                            android:layout_marginEnd="5dp" />
+                            android:layout_marginEnd="5dp"
+                            android:text="Pages" />
+
                         <TextView
                             android:id="@+id/pagesTv"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:text="N/A"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="N/A" />
                     </TableRow>
 
                 </TableLayout>
@@ -221,6 +228,47 @@
                 android:layout_marginTop="5dp"
                 android:text="The description of the book."
                 android:textColor="@color/black" />
+
+            <!--View: to separate-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/gray_03" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--TextView: Comments Label-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Comments"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <!--ImageButton: Show dialog to add new comment-->
+                <ImageButton
+                    android:id="@+id/addCommentBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@android:color/transparent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_comment_add_black" />
+
+                <!--Recycler view: Show comments-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentsRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/addCommentBtn"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/row_comment"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
