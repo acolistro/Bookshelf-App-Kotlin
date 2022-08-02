@@ -256,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:background="@android:color/transparent"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:src="@drawable/ic_comment_add_black" />
 
                 <!--Recycler view: Show comments-->
@@ -265,11 +265,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/addCommentBtn"
-                    tools:listitem=""
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/row_comment"/>
 
             </RelativeLayout>
-
 
         </LinearLayout>
     </ScrollView>
