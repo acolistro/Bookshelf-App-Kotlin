@@ -118,7 +118,7 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/accountTv"
+                android:id="@+id/accountTypeTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="N/A"
@@ -200,7 +200,7 @@
                 android:textAlignment="center"/>
 
             <TextView
-                android:id="@+id/accountStatus"
+                android:id="@+id/accountStatusTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Not Verified"
